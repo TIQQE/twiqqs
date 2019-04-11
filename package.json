@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/TIQQE/twiqqs/issues"
   },
-  "homepage": "https://github.com/TIQQE/twiqqs#readme"
+  "homepage": "https://github.com/TIQQE/twiqqs#readme",
+  "devDependencies": {
+    "serverless": "^1.40.0"
+  }
 }
