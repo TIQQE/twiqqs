@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws-nodejs # NOTE: update this with your service name
+service: twiqqs # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -23,7 +23,7 @@ provider:
 
 # you can overwrite defaults here
 #  stage: dev
-#  region: us-east-1
+  region: eu-north-1
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -56,7 +56,12 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: src/hello/handler.hello
+    events:
+     - http:
+         path: twiqqs
+         method: get
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
@@ -103,3 +108,6 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+plugins:
+  - serverless-offline

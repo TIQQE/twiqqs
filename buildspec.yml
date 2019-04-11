@@ -17,7 +17,7 @@ phases:
       - npm test
   build:
     commands:
-      - ./node_modules/.bin/serverless package -s test
+      - ./node_modules/.bin/serverless deploy -s test
   #post_build:
     #commands:
       # - command

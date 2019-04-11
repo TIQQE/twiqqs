@@ -4,8 +4,9 @@
   "description": "Something on AWS",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "start": "node index.js",
+    "test": "ava",
+    "start": "./node_modules/.bin/serverless offline start -s test -w",
+    "lint": "./node_modules/.bin/eslint",
     "build": "node index.js"
   },
   "repository": {
@@ -19,6 +20,14 @@
   },
   "homepage": "https://github.com/TIQQE/twiqqs#readme",
   "devDependencies": {
-    "serverless": "^1.40.0"
+    "ava": "^1.4.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "serverless": "^1.40.0",
+    "serverless-offline": "^4.9.4"
   }
 }
