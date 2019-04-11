@@ -24,7 +24,7 @@ provider:
 # you can overwrite defaults here
   stage: test
   region: eu-north-1
-  deploymentBucket: 200709891512.serverless.deploys
+  deploymentBucket: 200709891512.eu-north-1serverless.deploys
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
