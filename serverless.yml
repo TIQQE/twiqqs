@@ -55,6 +55,12 @@ provider:
 #    - exclude-me.js
 #    - exclude-me-dir/**
 
+custom: 
+  webpack: 
+    webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
+    includeModules: false   # Node modules configuration for packaging
+    packager: 'npm'   # Packager that will be used to package your external modules
+
 functions:
   hello:
     handler: src/hello/handler.hello
@@ -111,4 +117,5 @@ functions:
 #       Value: "Some output value"
 
 plugins:
+  - serverless-webpack
   - serverless-offline
