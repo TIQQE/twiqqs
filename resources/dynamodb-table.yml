@@ -15,6 +15,10 @@ Resources:
         - AttributeName: messageId
           KeyType: RANGE
       BillingMode: PAY_PER_REQUEST
+      Tags:
+        - 
+          Key: 'Project'
+          Value: 'twiqqs'
   TwiqqsTopicsTable:
     Type: AWS::DynamoDB::Table
     DeletionPolicy: Retain
@@ -27,3 +31,7 @@ Resources:
         - AttributeName: topic
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
+      Tags:
+        - 
+          Key: 'Project'
+          Value: 'twiqqs'
