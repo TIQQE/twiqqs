@@ -3,6 +3,7 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: ${self:custom.twiqqsMessagesTableName}
+      DeletionPolicy: Retain
       AttributeDefinitions:
         - AttributeName: topic
           AttributeType: S
@@ -16,6 +17,7 @@ Resources:
       BillingMode: PAY_PER_REQUEST
   TwiqqsTopicsTable:
     Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
     Properties:
       TableName: ${self:custom.twiqqsTopicsTableName}
       AttributeDefinitions:
