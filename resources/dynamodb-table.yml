@@ -1,16 +1,27 @@
 Resources:
-  TwiqqsTable:
+  TwiqqsMessageTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: ${self:custom.twiqqsTableName}
+      TableName: ${self:custom.twiqqsMessagesTableName}
       AttributeDefinitions:
-        - AttributeName: userId
+        - AttributeName: topic
           AttributeType: S
-        - AttributeName: twiqqsId
+        - AttributeName: messageId
           AttributeType: S
       KeySchema:
-        - AttributeName: userId
+        - AttributeName: topic
           KeyType: HASH
-        - AttributeName: twiqqsId
+        - AttributeName: messageId
           KeyType: RANGE
+      BillingMode: PAY_PER_REQUEST
+  TwiqqsTopicsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.twiqqsTopicsTableName}
+      AttributeDefinitions:
+        - AttributeName: topic
+          AttributeType: S
+      KeySchema:
+        - AttributeName: topic
+          KeyType: HASH´
       BillingMode: PAY_PER_REQUEST

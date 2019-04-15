@@ -57,7 +57,8 @@ provider:
 
 custom: 
   stage: ${opt:stage, self:provider.stage}
-  twiqqsTableName: twiqqs-${self:custom.stage}
+  twiqqsMessagesTableName: twiqqsMessages-${self:custom.stage}
+  twiqqsTopicsTableName: twiqqsTopics-${self:custom.stage}
   webpack: 
     webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
     includeModules: false   # Node modules configuration for packaging
