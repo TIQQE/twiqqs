@@ -7,7 +7,8 @@
     "test": "ava",
     "start": "./node_modules/.bin/serverless offline start -s test -w",
     "lint": "./node_modules/.bin/eslint",
-    "build": "./node_modules/.bin/serverless deploy -s test"
+    "build": "./node_modules/.bin/serverless deploy -s test",
+    "package": "./node_modules/.bin/serverless package -s test"
   },
   "repository": {
     "type": "git",

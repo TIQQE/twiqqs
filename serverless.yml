@@ -28,20 +28,14 @@ provider:
   deploymentBucket: 200709891512.deployment.bucket
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
+ iamRoleStatements:
+   - Effect: "Allow"
+     Action:
+       - "dynamodb:*"
+     Resource: 
+       - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsMessages-test*
+       - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsTopics-test*
+
 
 # you can define service wide environment variables here
 #  environment:
