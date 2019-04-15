@@ -28,13 +28,13 @@ provider:
   deploymentBucket: 200709891512.deployment.bucket
 
 # you can add statements to the Lambda function's IAM Role here
- iamRoleStatements:
-   - Effect: "Allow"
-     Action:
-       - "dynamodb:*"
-     Resource: 
-       - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsMessages-test*
-       - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsTopics-test*
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+      Resource: 
+        - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsMessages-test*
+        - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsTopics-test*
 
 
 # you can define service wide environment variables here
