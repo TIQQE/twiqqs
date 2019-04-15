@@ -23,5 +23,5 @@ Resources:
           AttributeType: S
       KeySchema:
         - AttributeName: topic
-          KeyType: HASH´
+          KeyType: HASH
       BillingMode: PAY_PER_REQUEST
