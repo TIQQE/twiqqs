@@ -23,6 +23,7 @@ provider:
 
 # you can overwrite defaults here
   stage: test
+  environment: ${file(env.yml):${self:custom.stage}}
   region: eu-west-1
   deploymentBucket: 200709891512.deployment.bucket
 
@@ -65,12 +66,18 @@ custom:
     packager: 'npm'   # Packager that will be used to package your external modules
 
 functions:
-  hello:
-    handler: src/hello/handler.hello
+  getTwiqqs:
+    handler: src/getTwiqqs/handler.get
     events:
      - http:
-         path: twiqqs
+         path: twiqqs/{topic}
          method: get
+  postTwiqqs:
+    handler: src/postTwiqqs/handler.post
+    events:
+     - http:
+        path: twiqqs
+        method: post
 
 
 #    The following are a few example events you can configure
