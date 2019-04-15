@@ -56,6 +56,7 @@ provider:
 #    - exclude-me-dir/**
 
 custom: 
+  twiqqsTableName: twiqqs-${self:custom.stage}
   webpack: 
     webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
     includeModules: false   # Node modules configuration for packaging
@@ -105,16 +106,12 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+  # DynamoDB
+  - ${file(resources/dynamodb-table.yml)}
+  # Cognito
+  - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}
 
 plugins:
   - serverless-webpack
