@@ -23,8 +23,8 @@ provider:
 
 # you can overwrite defaults here
   stage: test
-  region: eu-north-1
-  deploymentBucket: 200709891512.eu-north-1serverless.deploys
+  region: eu-west-1
+  deploymentBucket: 200709891512.serverless.deploys
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -111,8 +111,8 @@ resources:
   # DynamoDB
   - ${file(resources/dynamodb-table.yml)}
   # Cognito
-  # - ${file(resources/cognito-user-pool.yml)}
-  # - ${file(resources/cognito-identity-pool.yml)}
+  - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}
 
 plugins:
   - serverless-webpack
