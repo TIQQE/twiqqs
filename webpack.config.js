@@ -2,7 +2,7 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const slsw = require('serverless-webpack')
 
-module.exports = {
+const config = {
   entry: slsw.lib.entries,
   target: 'node',
   externals: [nodeExternals()],
@@ -16,3 +16,9 @@ module.exports = {
     rules: [{ test: /\.js$/, use: [{ loader: 'babel-loader' }] }]
   }
 }
+
+if (slsw.lib.webpack.isLocal) {
+  config.devtool = 'source-map'
+}
+
+module.exports = config

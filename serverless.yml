@@ -66,12 +66,14 @@ functions:
      - http:
          path: twiqqs/{topic}
          method: get
+         cors: true
   postTwiqqs:
     handler: src/postTwiqqs/handler.post
     events:
      - http:
         path: twiqqs
         method: post
+        cors: true
 
 
 #    The following are a few example events you can configure
