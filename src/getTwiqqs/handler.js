@@ -7,8 +7,8 @@ exports.get = async (event) => {
   try {
     const topic = event.pathParameters.topic
     const response = await dynamoHelper.getLatestTwiqqs({ topic })
-    return resp(200, response)
+    return resp(200, JSON.stringify(response))
   } catch (error) {
-    return resp(500, error.message || error)
+    return resp(500, error.message)
   }
 }

@@ -15,8 +15,8 @@ exports.post = async (event) => {
       dynamoHelper.putTopic(topic) // sync
     }
     await dynamoHelper.putTwiqqs({ message, username, topic })
-    resp(200, message)
+    return resp(200, 'ok')
   } catch (error) {
-    resp(500, error.message || error)
+    resp(500, error.message)
   }
 }

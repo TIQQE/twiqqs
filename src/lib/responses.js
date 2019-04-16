@@ -1,9 +1,9 @@
-export const resp = (statusCode, json) => {
+export const resp = (statusCode, str) => {
   return {
-    statusCode: parseInt(statusCode),
+    statusCode: statusCode,
     headers: {
       'Access-Control-Allow-Origin': '*'
     },
-    body: JSON.stringify(json)
+    body: str
   }
 }
