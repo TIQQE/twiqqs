@@ -1,4 +1,5 @@
 'use strict'
+import { resp } from '../lib/responses'
 
 const dynamoHelper = require('../lib/dynamoDbHelper')
 
@@ -6,14 +7,8 @@ exports.get = async (event) => {
   try {
     const topic = event.pathParameters.topic
     const response = await dynamoHelper.getLatestTwiqqs({ topic })
-    return {
-      statusCode: 200,
-      body: JSON.stringify(response)
-    }
+    return resp(200, response)
   } catch (error) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify(error.message || error)
-    }
+    return resp(500, error.message || error)
   }
 }
