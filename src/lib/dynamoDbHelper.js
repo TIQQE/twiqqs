@@ -26,7 +26,7 @@ export const getLatestTwiqqs = async (inData) => {
       ':t': inData.topic
     }
   }
-  console.log({ message: 'Writing to dynamodb', params: params })
+  console.log({ message: 'Reading from dynamodb', params: params })
   const response = await client.query(params).promise()
   return response
 }
@@ -36,7 +36,7 @@ export const topicExists = async (topic) => {
     TableName: env.topicTable,
     Key: { topic }
   }
-  console.log({ message: 'Writing to dynamodb', params: params })
+  console.log({ message: 'Reading from dynamodb', params: params })
   const response = await client.get(params).promise()
   return !!Object.keys(response).length
 }

@@ -3,7 +3,7 @@ import { resp } from '../lib/responses'
 
 const dynamoHelper = require('../lib/dynamoDbHelper')
 
-exports.post = async (event) => {
+export const post = async (event) => {
   console.log(JSON.stringify(event))
   const topic = JSON.parse(event.body).topic
   const message = JSON.parse(event.body).message
