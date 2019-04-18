@@ -78,7 +78,13 @@ functions:
         path: twiqqs
         method: post
         cors: true
-
+  listTopics:
+    handler: src/listTopics/handler.list
+    events:
+     - http:
+        path: topics
+        method: get
+        cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
