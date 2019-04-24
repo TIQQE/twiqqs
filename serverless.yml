@@ -96,7 +96,8 @@ functions:
   websocketConnectHandler:
     handler: src/websockets/connect/handler.connectHandler
     events:
-      - websocket: $connect
+      - websocket:
+        route: $connect
         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_XKmewaO2y
       - websocket: $default
 
