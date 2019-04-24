@@ -92,6 +92,8 @@ functions:
         path: topic
         method: post
         cors: true
+        authorizer:
+          arn: aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_XKmewaO2y
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
