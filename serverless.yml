@@ -85,6 +85,13 @@ functions:
         path: topics
         method: get
         cors: true
+  createTopic:
+    handler: src/createTopic/handler.createTopic
+    events:
+     - http:
+        path: topic
+        method: post
+        cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
