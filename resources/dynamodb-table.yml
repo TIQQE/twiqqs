@@ -33,3 +33,21 @@ Resources:
         - 
           Key: 'Project'
           Value: 'twiqqs'
+  TwiqqsConnectionsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ${self:custom.twiqqsConnectionsTableName}
+      AttributeDefinitions:
+        - AttributeName: connectionId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: connectionId
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+      TimeToLiveSpecification: 
+        AttributeName: timeToLive
+        Enabled: true
+      Tags:
+        - 
+          Key: 'Project'
+          Value: 'twiqqs'
