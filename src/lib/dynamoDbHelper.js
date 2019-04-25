@@ -66,3 +66,13 @@ export const putItem = async (params) => {
   console.log({ message: 'Writing to dynamodb', params: params })
   return await client.put(params).promise();
 }
+
+export const deleteConnection = async (connectionId) => {
+  console.log(`Deleting connectionId ${connectionId}...`);
+  return await client.delete({
+    TableName: env.connectionsTable,
+    Key: {
+      connectionId
+    }
+  });
+}
