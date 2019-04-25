@@ -69,10 +69,12 @@ functions:
          path: twiqqs
          method: get
          cors: true
+         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
       - http:
          path: twiqqs/{topic}
          method: get
          cors: true
+         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
   postTwiqqs:
     handler: src/postTwiqqs/handler.post
     events:

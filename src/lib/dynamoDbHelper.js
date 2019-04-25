@@ -29,8 +29,8 @@ export const getLatestTwiqqs = async (inData) => {
     }
   }
   console.log({ message: 'Reading from dynamodb', params: params })
-  const response = await client.query(params).promise()
-  return response
+  const response = await client.query(params).promise();
+  return response.Items;
 }
 
 export const topicExists = async (topic) => {
