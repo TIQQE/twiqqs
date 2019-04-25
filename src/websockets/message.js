@@ -1,5 +1,8 @@
 import { resp } from "../lib/responses";
-import { getConnection, putTwiqqs } from "../lib/dynamoDbHelper";
+import { getConnection, putTwiqqs, getAllConnections } from "../lib/dynamoDbHelper";
+
+const util = require("util");
+const AWS = require('aws-sdk')
 
 export const postMessage = async (event) => {
   try {
@@ -13,9 +16,38 @@ export const postMessage = async (event) => {
     console.log(`message: ${message}`);
     console.log(`email: ${email}`);
 
-    await putTwiqqs(email, topic, message);
-    return resp(200, '');
+    const messageItem = await putTwiqqs(email, topic, message);
+
+    console.log('Pushing message to all open connections...');
+    await pushMessageToOpenConnections(messageItem, event);
+    console.log('Success!');
+    return resp(200);
   } catch (error) {
-    return resp(200, '');
+    return resp(200);
   }
+}
+
+export const pushMessageToOpenConnections = async (messageItem, event) => {
+  const domain = event.requestContext.domainName;
+  const stage = event.requestContext.stage;
+  const callbackUrlForAWS = util.format(util.format('https://%s/%s', domain, stage));
+
+  const connections = await getAllConnections();
+
+  const promises = [];
+
+  for(const connection of connections) {
+    const connectionId = connection.connectionId;
+    promises.push(sendMessageToClient(callbackUrlForAWS, connectionId, messageItem));
+  }
+
+  return await Promise.all(promises);
+}
+
+export const sendMessageToClient = async (url, connectionId, payload) => {
+  const apiGw = new AWS.ApiGatewayManagementApi({apiVersion: '2029', endpoint: url});
+  return await apiGw.postToConnection({
+    ConnectionId: connectionId,
+    Data: JSON.stringify(payload),
+  }).promise();
 }

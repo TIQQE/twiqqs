@@ -18,7 +18,7 @@ export const connect = async (accessToken, connectionId) => {
     console.log(JSON.stringify(userInfo));
 
     await putConnection(connectionId, userInfo.email);
-    return resp(200, '');
+    return resp(200);
   } catch(error) {
     console.error(error);
     return deny();
@@ -26,5 +26,5 @@ export const connect = async (accessToken, connectionId) => {
 }
 
 export const deny = () => {
-  return resp(401, '');
+  return resp(401);
 }

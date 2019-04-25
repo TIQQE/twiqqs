@@ -1,9 +1,12 @@
 export const resp = (statusCode, str) => {
-  return {
+  const response = {
     statusCode: statusCode,
     headers: {
       'Access-Control-Allow-Origin': '*'
-    },
-    body: str
+    }
   }
+  if(str) {
+    response.body = str;
+  }
+  return response;
 }

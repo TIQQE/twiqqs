@@ -3,5 +3,5 @@ import { deleteConnection } from '../lib/dynamoDbHelper';
 
 export const disconnect = async (connectionId) => {
   await deleteConnection(connectionId);
-  return resp(200, '');
+  return resp(200);
 }
