@@ -13,7 +13,7 @@ export const list = async (event) => {
       {
         name: 'serverless'
       }
-    ];
+    ]
     return resp(200, JSON.stringify(response))
   } catch (error) {
     console.log(error)

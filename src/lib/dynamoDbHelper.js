@@ -9,15 +9,15 @@ export const putTwiqqs = async (email, topic, message) => {
     topic: topic,
     messageId: `${email}#${new Date().toISOString()}`,
     message: message
-  };
+  }
 
   const params = {
     TableName: env.messageTable,
     Item: item
   }
 
-  await putItem(params);
-  return item;
+  await putItem(params)
+  return item
 }
 
 export const getLatestTwiqqs = async (inData) => {
@@ -29,8 +29,8 @@ export const getLatestTwiqqs = async (inData) => {
     }
   }
   console.log({ message: 'Reading from dynamodb', params: params })
-  const response = await client.query(params).promise();
-  return response.Items;
+  const response = await client.query(params).promise()
+  return response.Items
 }
 
 export const topicExists = async (topic) => {
@@ -50,11 +50,11 @@ export const putTopic = async (topic) => {
       topic: topic
     }
   }
-  return await putItem(params);
+  return putItem(params)
 }
 
 export const putConnection = async (connectionId, email) => {
-  const timeToLive = Math.round(Date.now() / 1000) + (3600 * 6); // 6 hours forward in seconds
+  const timeToLive = Math.round(Date.now() / 1000) + (3600 * 6) // 6 hours forward in seconds
   const params = {
     TableName: env.connectionsTable,
     Item: {
@@ -63,51 +63,51 @@ export const putConnection = async (connectionId, email) => {
       timeToLive
     }
   }
-  return await putItem(params);
+  return putItem(params)
 }
 
 export const putItem = async (params) => {
   console.log({ message: 'Writing to dynamodb', params: params })
-  return await client.put(params).promise();
+  return client.put(params).promise()
 }
 
 export const deleteConnection = async (connectionId) => {
-  console.log(`Deleting connectionId ${connectionId}`);
+  console.log(`Deleting connectionId ${connectionId}`)
   const params = {
     TableName: env.connectionsTable,
     Key: { connectionId }
-  };
-  return await client.delete(params).promise();
+  }
+  return client.delete(params).promise()
 }
 
 export const getConnection = async (connectionId) => {
   const params = {
     TableName: env.connectionsTable,
     Key: { connectionId }
-  };
-  const response = await client.get(params).promise();
-  return response.Item;
+  }
+  const response = await client.get(params).promise()
+  return response.Item
 }
 
 export const getAllConnections = async () => {
-  const table = env.connectionsTable;
-  let result = [];
-  let startKey = null;
+  const table = env.connectionsTable
+  let result = []
+  let startKey = null
   while (true) {
     let params = {
       TableName: table,
       Limit: 1000
-    };
-    if (startKey) {
-      params.ExclusiveStartKey = startKey;
     }
-    const scanResponse = await client.scan(params).promise();
-    result = result.concat(scanResponse.Items);
+    if (startKey) {
+      params.ExclusiveStartKey = startKey
+    }
+    const scanResponse = await client.scan(params).promise()
+    result = result.concat(scanResponse.Items)
     if (scanResponse.LastEvaluatedKey) {
-      startKey = scanResponse.LastEvaluatedKey;
-      await new Promise(resolve => setTimeout(resolve, 100)); // this means "wait 0.1 second"
+      startKey = scanResponse.LastEvaluatedKey
+      await new Promise(resolve => setTimeout(resolve, 100)) // this means "wait 0.1 second"
     } else {
-      return result;
+      return result
     }
   }
 }

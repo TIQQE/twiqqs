@@ -5,8 +5,8 @@ export const resp = (statusCode, str) => {
       'Access-Control-Allow-Origin': '*'
     }
   }
-  if(str) {
-    response.body = str;
+  if (str) {
+    response.body = str
   }
-  return response;
+  return response
 }
