@@ -93,8 +93,8 @@ functions:
         method: post
         cors: true
         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
-  websocketConnectHandler:
-    handler: src/websockets/connect/handler.connectHandler
+  websocketHandler:
+    handler: src/websockets/handler.handler
     events:
       - websocket: $connect
       - websocket: $default

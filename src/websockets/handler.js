@@ -1,7 +1,7 @@
 'use strict'
-import { resp } from '../../lib/responses'
+import { resp } from '../lib/responses'
 
-export const connectHandler = async (event) => {
+export const handler = async (event) => {
   console.log(JSON.stringify(event));
   if(event.queryStringParameters && event.queryStringParameters.id_token) {
     return resp(200, '');
