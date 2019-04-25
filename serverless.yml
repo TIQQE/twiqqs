@@ -56,6 +56,7 @@ custom:
   twiqqsMessagesTableName: twiqqsMessages-${self:custom.stage}
   twiqqsTopicsTableName: twiqqsTopics-${self:custom.stage}
   twiqqsConnectionsTableName: twiqqsConnections-${self:custom.stage}
+  userPool: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
   webpack: 
     webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
     includeModules: true   # Node modules configuration for packaging
@@ -69,12 +70,12 @@ functions:
          path: twiqqs
          method: get
          cors: true
-         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
+         authorizer: ${self:custom.userPool}
       - http:
          path: twiqqs/{topic}
          method: get
          cors: true
-         authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
+         authorizer: ${self:custom.userPool}
   postTwiqqs:
     handler: src/postTwiqqs/handler.post
     events:
@@ -96,7 +97,7 @@ functions:
         path: topic
         method: post
         cors: true
-        authorizer: arn:aws:cognito-idp:eu-west-1:200709891512:userpool/eu-west-1_UauzSA3TR
+        authorizer: ${self:custom.userPool}
   websocketHandler:
     handler: src/websockets/handler.handler
     events:
