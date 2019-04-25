@@ -6,7 +6,7 @@ const AWS = require('aws-sdk')
 
 export const postMessage = async (event) => {
   try {
-    const body = JSON.parse(event.body);
+    const body = JSON.parse(event.body.replace(/\n/g, '<br>'));
     const topic = body.topic;
     const message = body.message;
     const connection = await getConnection(event.requestContext.connectionId);
