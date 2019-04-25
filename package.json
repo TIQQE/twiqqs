@@ -41,6 +41,8 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.437.0"
+    "aws-sdk": "^2.437.0",
+    "request": "2.88.0",
+    "request-promise-native": "1.0.7"
   }
 }
