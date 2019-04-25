@@ -14,7 +14,7 @@ export const post = async (event) => {
     if (!topicExists) {
       dynamoHelper.putTopic(topic) // sync
     }
-    await dynamoHelper.putTwiqqs({ message, username, topic })
+    await dynamoHelper.putTwiqqs(username, topic, message)
     return resp(200, 'ok')
   } catch (error) {
     resp(500, error.message)

@@ -4,13 +4,13 @@ const client = new AWS.DynamoDB.DocumentClient({ region: 'eu-west-1' })
 // const uuidV4 = require('uuid/v4')
 const env = process.env
 
-export const putTwiqqs = async (inData) => {
+export const putTwiqqs = async (email, topic, message) => {
   const params = {
     TableName: env.messageTable,
     Item: {
-      topic: inData.topic,
-      messageId: `${inData.username}#${new Date().toISOString()}`,
-      message: inData.message
+      topic: topic,
+      messageId: `${email}#${new Date().toISOString()}`,
+      message: message
     }
   }
   return await putItem(params);
@@ -68,11 +68,19 @@ export const putItem = async (params) => {
 }
 
 export const deleteConnection = async (connectionId) => {
-  console.log(`Deleting connectionId ${connectionId}...`);
-  return await client.delete({
+  console.log(`Deleting connectionId ${connectionId}`);
+  const params = {
     TableName: env.connectionsTable,
-    Key: {
-      connectionId
-    }
-  });
+    Key: { connectionId }
+  };
+  return await client.delete(params).promise();
+}
+
+export const getConnection = async (connectionId) => {
+  const params = {
+    TableName: env.connectionsTable,
+    Key: { connectionId }
+  };
+  const response = await client.get(params).promise();
+  return response.Item;
 }
