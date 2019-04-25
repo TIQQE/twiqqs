@@ -56,7 +56,7 @@ custom:
   twiqqsTopicsTableName: twiqqsTopics-${self:custom.stage}
   webpack: 
     webpackConfig: 'webpack.config.js'   # Name of webpack configuration file
-    includeModules: false   # Node modules configuration for packaging
+    includeModules: true   # Node modules configuration for packaging
     packager: 'npm'   # Packager that will be used to package your external modules
 
 functions:
@@ -97,6 +97,7 @@ functions:
     handler: src/websockets/handler.handler
     events:
       - websocket: $connect
+      - websocket: $disconnect
       - websocket: $default
 
 #    The following are a few example events you can configure

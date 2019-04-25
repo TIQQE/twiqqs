@@ -1,7 +1,7 @@
 import { resp } from "../lib/responses";
-import * as rp from 'request-promise-native';
+const rp = require("request-promise-native");
 
-export const connect = async (accessToken) => {
+export const connect = async (accessToken, connectionId) => {
   if(!accessToken) return deny();
   const userInfoEndpoint = 'https://twiqqs-test.auth.eu-west-1.amazoncognito.com/oauth2/userInfo';
   const requestOptions = {
@@ -16,7 +16,8 @@ export const connect = async (accessToken) => {
     const userInfo = await rp(requestOptions);
     console.log('userInfo: ');
     console.log(JSON.stringify(userInfo));
-
+    console.log('connectionId: ' + connectionId);
+    
     await createConnection();
     return resp(200, '');
   } catch(error) {
