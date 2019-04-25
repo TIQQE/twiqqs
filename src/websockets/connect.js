@@ -1,4 +1,5 @@
 import { resp } from "../lib/responses";
+import { putConnection } from "../lib/dynamoDbHelper";
 const rp = require("request-promise-native");
 
 export const connect = async (accessToken, connectionId) => {
@@ -14,11 +15,9 @@ export const connect = async (accessToken, connectionId) => {
 
   try {
     const userInfo = await rp(requestOptions);
-    console.log('userInfo: ');
     console.log(JSON.stringify(userInfo));
-    console.log('connectionId: ' + connectionId);
-    
-    await createConnection();
+
+    await putConnection(connectionId, userInfo.email);
     return resp(200, '');
   } catch(error) {
     console.error(error);
@@ -28,8 +27,4 @@ export const connect = async (accessToken, connectionId) => {
 
 export const deny = () => {
   return resp(401, '');
-}
-
-export const createConnection = async () => {
-  return;
 }

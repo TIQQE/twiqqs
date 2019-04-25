@@ -13,9 +13,7 @@ export const putTwiqqs = async (inData) => {
       message: inData.message
     }
   }
-  console.log({ message: 'Writing to dynamodb', params: params })
-  const response = await client.put(params).promise()
-  return response
+  return await putItem(params);
 }
 
 export const getLatestTwiqqs = async (inData) => {
@@ -48,7 +46,23 @@ export const putTopic = async (topic) => {
       topic: topic
     }
   }
+  return await putItem(params);
+}
+
+export const putConnection = async (connectionId, email) => {
+  const timeToLive = Math.round(Date.now() / 1000) + (3600 * 6); // 6 hours forward in seconds
+  const params = {
+    TableName: env.connectionsTable,
+    Item: {
+      connectionId,
+      email,
+      timeToLive
+    }
+  }
+  return await putItem(params);
+}
+
+export const putItem = async (params) => {
   console.log({ message: 'Writing to dynamodb', params: params })
-  const response = await client.put(params).promise()
-  return response
+  return await client.put(params).promise();
 }
