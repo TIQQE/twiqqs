@@ -35,6 +35,7 @@ provider:
       Resource: 
         - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsMessages-${self:custom.stage}*
         - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsTopics-${self:custom.stage}*
+        - arn:aws:dynamodb:eu-west-1:200709891512:table/twiqqsConnections-${self:custom.stage}*
 
 
 # you can define service wide environment variables here
