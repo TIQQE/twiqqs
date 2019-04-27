@@ -7,7 +7,7 @@ const env = process.env
 export const putTwiqqs = async (email, topic, message) => {
   const item = {
     topic: topic,
-    messageId: `${email}#${new Date().toISOString()}`,
+    messageId: `${new Date().toISOString()}#${email}`,
     message: message
   }
 
