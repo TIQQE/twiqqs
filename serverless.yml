@@ -98,6 +98,14 @@ functions:
         method: post
         cors: true
         authorizer: ${self:custom.userPool}
+  getConnections:
+    handler: src/connections/handler.get
+    events:
+     - http:
+        path: connections
+        method: get
+        cors: true
+        authorizer: ${self:custom.userPool}
   websocketHandler:
     handler: src/websockets/handler.handler
     events:
